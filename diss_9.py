@@ -44,10 +44,10 @@ def getEggMoves(pokemon):
         # if "<a href=/pokedex/scizor/egg" in tag:
         # print(move.text)
 
-        if move.text == 'Counter' or 'Defog' or 'Feint' or 'Night Slash' or 'Quick Guard':
-            egg_moves.append(move)
+    #     if move.text == 'Counter' or 'Defog' or 'Feint' or 'Night Slash' or 'Quick Guard':
+    #         egg_moves.append(move)
 
-    print(egg_moves)
+    # print(egg_moves)
 
 # done
 # Task 3: Create a regex expression that will find all the times that have these formats: @2pm @5 pm @10am
