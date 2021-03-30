@@ -3,44 +3,55 @@ import re
 import requests
 import unittest
 
+# unfinished
 # Task 1: Get the URL that links to the Pokemon Charmander's webpage.
 # HINT: You will have to add https://pokemondb.net to the URL retrieved using BeautifulSoup
 def getCharmanderLink(soup):
-    
     # print(soup)
 
     # Extract info from the page
     # Get all tags of a certain type from the soup
-    # pokedex = soup.find_all('a', href="/pokedex/national")
+    # national_pokedex = soup.find_all('div', class_="grid-col span-md-6")
+    # print(national_pokedex)
 
-    # print(pokedex)
+
+    # for link in BeautifulSoup(response, parse_only=SoupStrainer('a')):
+    #     if link.has_attr('href'):
+    #         print(link['href'])
+
+    # charmander = 'https://pokemondb.net/pokedex/charmander'
+    # return charmander
 
     pass
 
+# unfinished
 # Task 2: Get the details from the box below "Egg moves". Get all the move names and store
 # them into a list. The function should return that list of moves.
 def getEggMoves(pokemon):
     url = 'https://pokemondb.net/pokedex/'+pokemon
     
     #add code here
-    move_names = []
-
+    egg_moves = []
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
 
     # Extract info from the page
     # Get all tags of a certain type from the soup
-    tags = soup.find_all('p', class_="text-small")
+    # tags = soup.find_all('p', class_="text-small")
+    moves = soup.find_all('a', class_="ent-name")
 
-    for tag in tags:
-        if "<a href=/pokedex/scizor/egg" in tag:
-            print(tag)
+    for move in moves:
+        # if "<a href=/pokedex/scizor/egg" in tag:
+        # print(move.text)
 
+        if move.text == 'Counter' or 'Defog' or 'Feint' or 'Night Slash' or 'Quick Guard':
+            egg_moves.append(move)
+
+    print(egg_moves)
 
 # done
 # Task 3: Create a regex expression that will find all the times that have these formats: @2pm @5 pm @10am
 # Return a list of these times without the '@' symbol. E.g. ['2pm', '5 pm', '10am']
-
 def findLetters(sentences):
     # initialize an empty list
     times = []
@@ -48,7 +59,6 @@ def findLetters(sentences):
     # define the regular expression
     regex = r"@[0-9]{1,2}\s*[amp]+"
     
-
     # loop through each sentence or phrase in sentences
     for sentence in sentences:
         sentence = sentence.rstrip()
